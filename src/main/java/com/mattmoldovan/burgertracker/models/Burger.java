@@ -17,37 +17,38 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name="burgers")
+@Table(name = "burgers")
 public class Burger {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @NotNull(message="Burger name is required")
-    @Size(min=2, message="Burger name must be at least 2 characters")
-    private String burgerName;
-   
-    @NotNull(message="Restaurant name is required")
-    @Size(min=2, message="Restaurant name must be at least 2 characters")
-    private String restaurantName;
-    
-    @NotNull(message="Rating is required")
-    @Range(min=1, max=5, message="Must be between 1 - 5")
-    private Integer rating;
-    
-    @NotNull(message="Notes are required")
-    @Size(min=2, message="Notes must be at least 2 characters")
-    private String notes;
-    
-    @Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date createdAt;
-    
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date updatedAt;
-    
-    public Burger() {}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@NotNull(message = "Burger name is required")
+	@Size(min = 2, message = "Burger name must be at least 2 characters")
+	private String burgerName;
+
+	@NotNull(message = "Restaurant name is required")
+	@Size(min = 2, message = "Restaurant name must be at least 2 characters")
+	private String restaurantName;
+
+	@NotNull(message = "Rating is required")
+	@Range(min = 1, max = 5, message = "Must be between 1 - 5")
+	private Integer rating;
+
+	@NotNull(message = "Notes are required")
+	@Size(min = 2, message = "Notes must be at least 2 characters")
+	private String notes;
+
+	@Column(updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date createdAt;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updatedAt;
+
+	public Burger() {
+	}
 
 	public Long getId() {
 		return id;
@@ -104,16 +105,15 @@ public class Burger {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-    
-    @PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
 
-    
-    
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
+
 }

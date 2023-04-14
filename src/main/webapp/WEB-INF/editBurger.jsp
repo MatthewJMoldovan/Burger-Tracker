@@ -16,44 +16,17 @@
 <title>Burger Tracker</title>
 </head>
 <body>
-	<div class="w-75 p-4 mx-auto">
-		<h1 class="text-center">Burger Tracker</h1>
-		<div class="shadow mb-4 rounded border p-4 text-start">
-			<Table class="table">
-				<thead>
-					<tr>
-						<th class="text-center">Burger Name</th>
-						<th class="text-center">Restaurant Name</th>
-						<th class="text-center">Rating (out of 5)</th>
-						<th class="text-center" colspan=2>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="eachBurger" items="${burgerList }">
-						<tr>
-							<td class="text-center align-middle"><a
-								href="/burgers/${eachBurger.id}"><c:out
-										value="${eachBurger.burgerName }"></c:out></a></td>
-							<td class="text-center align-middle"><c:out
-									value="${eachBurger.restaurantName }"></c:out></td>
-							<td class="text-center align-middle"><c:out
-									value="${eachBurger.rating }"></c:out></td>
-							<td class="text-center align-middle"><a
-								class="btn btn-outline-warning"
-								href="/burgers/edit/${eachBurger.id}">Edit</a></td>
-							<td>
-								<form action="/burgers/${eachBurger.id }" method="POST">
-									<input type="hidden" name="_method" value="delete">
-									<button class="btn btn-outline-danger" type="submit">Delete</button>
-								</form>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</Table>
+	<nav
+		class="navbar navbar-expand-lg navbar-light bg-light sticky-top justify-content-between m-2 mb-2 px-4 rounded border">
+		<h1 class="navbar-brand mb-0 fs-1">Edit Burger</h1>
+		<div>
+			<a class="btn btn-success" href="/">Home</a>
 		</div>
+	</nav>
+	<div class="w-75 p-4 mx-auto">
 		<div class="shadow mb-4 rounded border p-4 text-start">
-			<form:form action="/process" method="POST" modelAttribute="newBurger">
+			<form:form action="/process/edit/${oneBurger.id }" method="PUT"
+				modelAttribute="oneBurger">
 				<div class="formGroup">
 					<div>
 						<form:label path="burgerName"> Burger Name </form:label>
@@ -81,6 +54,5 @@
 			</form:form>
 		</div>
 	</div>
-
 </body>
 </html>
